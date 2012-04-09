@@ -10,4 +10,7 @@ main: main.o scattersearch.o
 clean:
 	@rm -vf *.o main
 
+distclean: clean
+	@rm -vf gmon.out
+
 .PHONY: all clean

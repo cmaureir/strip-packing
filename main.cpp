@@ -25,22 +25,21 @@ int main(int argc, char *argv[]) {
     refset_tmp = refset;
 
     do {
-        // número de nuevas soluciones en RefSet
+        // number of new solutions in the RefSet
         loop = 0;
         while (get_difference(refset_tmp,refset) != 0)
         {
             refset_tmp = refset;
             solutions_combination();
             fitness_calculation(new_set);
-            //new_set = solutions_improvement2(new_set);
-            solutions_improvement(new_set);
+            new_set = solutions_improvement2(new_set);
+            //solutions_improvement(new_set);
             refset_modification(new_set);
             loop++;
-            cout << "\t" << loop << endl;
         }
         save_best_solution(refset);
 
-        /* A: Si encontramos el óptimo, terminamos */
+        /* A: If we find the optimal, stop */
         if(best.p == 100){
             iteration = max_iter;
         }
@@ -48,12 +47,11 @@ int main(int argc, char *argv[]) {
 
         refset_rebuild();
         iteration++;
-        cout << iteration << endl;
-        print_one_solution(best);
+        //print_one_solution(best);
         //print_strip(best);
     } while (iteration < max_iter);
     print_one_solution(best);
-    //print_strip(best);
+    print_strip(best);
 
     return 0;
 }

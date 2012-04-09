@@ -97,7 +97,7 @@ void print_input_file(){
     }
 }
 
-// Imprime el valor de una solucion (orden de las cajas)
+// Print a solution (rectangles order), their fitness and occupied area
 void print_one_solution(solution tmp){
     for (int i = 0; i < (int)tmp.items.size(); i++) {
         cout << tmp.items[i] << " ";
@@ -108,21 +108,21 @@ void print_one_solution(solution tmp){
 void print_strip(solution sol){
 
     const string colors[] = {
-            "\e[0;34m",//AZUL
-            "\e[0;32m",//VERDE
-            "\e[0;36m",//CYAN
-            "\e[0;31m",//ROJO
-            "\e[0;35m",//PURPURA
-            "\e[0;33m",//MARRON
-            "\e[0;37m",//GRISCLARO
-            "\e[1;33m",//GRISOSCURO
-            "\e[1;34m",//AZULCLARO
-            "\e[1;32m",//VERDECLARO
-            "\e[1;36m",//CYANCLARO
-            "\e[1;31m",//ROJOCLARO
-            "\e[1;35m",//PURPURACLARO
-            "\e[1;33m",//AMARILLO
-            "\e[0;37m"//BLANCO
+            "\e[0;34m",// BLUE
+            "\e[0;32m",// GREEN
+            "\e[0;36m",// CYAN
+            "\e[0;31m",// RED
+            "\e[0;35m",// PURPLE
+            "\e[0;33m",// BROWN
+            "\e[0;37m",// LIGHT GRAY
+            "\e[1;33m",// DARK GRAY
+            "\e[1;34m",// LIGHT BLUE
+            "\e[1;32m",// LIGHT GREEN
+            "\e[1;36m",// CYANCLARO
+            "\e[1;31m",// LIGHT RED
+            "\e[1;35m",// LIGHT PURPLE
+            "\e[1;33m",// YELLOW
+            "\e[0;37m" // WHITE
     };
 
     vector<int> tmp = sol.items;
@@ -157,7 +157,7 @@ void print_solutions(vector<solution> tmp){
 
     for (int i = 0; i < (int)tmp.size(); i++)
     {
-        cout << "Solucion " << i << ":\t";
+        cout << "Solution " << i << ":\t";
         for (int j = 0; j < (int)tmp[i].items.size(); j++)
         {
             cout << tmp[i].items[j] <<  " ";
@@ -189,8 +189,7 @@ void sort_solutions(vector<solution> &tmp){
  *********************/
 
 
-// Buscar una posición para un elemento dentro del «strip»
-//  Utilizando heurística Bottom-Left
+// Search for an element fit inside the «strip», using BLF heuristic
 bool search_fit(int item, int item_w, int item_h, int &a, int &b, int &h, int **strip){
     //cout << "search_fit()" << endl;
     bool fit = true;
@@ -226,7 +225,6 @@ bool search_fit(int item, int item_w, int item_h, int &a, int &b, int &h, int **
                     b = y;
                     if (h < b + item_h){
                         h = b + item_h;
-                        cout << "Nueva altura " << h << endl;
                     }
                     return fit;
                 }
@@ -241,7 +239,7 @@ bool search_fit(int item, int item_w, int item_h, int &a, int &b, int &h, int **
     return false;
 }
 
-// Busca si tmp está dentro de tmp_sols
+// Looks if «tmp» is inside «tmp_sols»
 bool is_in(solution tmp, vector<solution> tmp_sols)
 {
     bool all = true;
@@ -259,7 +257,7 @@ bool is_in(solution tmp, vector<solution> tmp_sols)
 }
 
 
-// Posicionamiento de un item en el «strip»
+// Rectangle positioning inside the «strip»
 void place_item(int item, int item_w, int item_h, int a, int b, int **strip){
     //cout << "place_item()" << endl;
     for (int i = a; i < a + item_w; i++) {
@@ -302,7 +300,7 @@ void fitness_calculation_one(solution &tmp){
     getchar();
 }
 
-// Calculo del fitness para un conjunto de soluciones
+// Fitness calculation
 void fitness_calculation(vector<solution> &ss){
     //cout << "fitness_calculation()" << endl;
     for (int i = 0; i < (int)ss.size(); i++)
@@ -313,26 +311,22 @@ void fitness_calculation(vector<solution> &ss){
 
 
 
-// Generar Soluciones:
-//  Aplica un método de generación con diversidad del conjunto
-//  de soluciones en "P" de tamaño «popsize».
+// Solution generation
 void solutions_generation(vector<solution> &soluciones)
 {
     //cout << "solutions_generation()" << endl;
     // Fixed seed
     srand(123456789*iteration);
-    cout << 123456789+iteration << endl;
     soluciones.clear();
 
     int i, j, k, r;
     int ids[bs.size()];
     int tmp;
 
-    // Sorted sequence of the boxes
+    // Sorted sequence of the rectangles
     for (i = 0; i < (int)bs.size(); i++) ids[i] = i+1;
 
-
-    // Shuffle of the boxes order
+    // Shuffling rectangles order
     for (i = 0; i < popsize; i++) {
 
         // filling strip with 0
@@ -353,12 +347,12 @@ void solutions_generation(vector<solution> &soluciones)
             ids[r] = tmp;
         }
 
-        // Adding shuffled boxes to the solutions struct
+        // Adding shuffled rectangles on the solutions structure
         for (j = 0; j < (int)bs.size(); j++) {
             tmp_sol.items.push_back(ids[j]);
         }
 
-        // Temp fitness
+        // tmp solution fitness
         tmp_sol.fitness = -1.0;
         tmp_sol.height  = 0;
         tmp_sol.p = 0.0;
@@ -368,9 +362,9 @@ void solutions_generation(vector<solution> &soluciones)
     }
 }
 
-// Mejorar Soluciones:
-//  Aplica un método de búsqueda local para mejorar las
-//  soluciones generadas en el paso previo.
+// Improve solutions
+//    Apply a local search method to improve the generated
+//    solutions in the previous step.
 void solutions_improvement(vector<solution> &tmp_sols)
 {
     //cout << "solutions_improvement()" << endl;
@@ -403,28 +397,25 @@ void solutions_improvement(vector<solution> &tmp_sols)
     }
 }
 
-// Construir el conjunto de referencia RefSet:
-//  Elegir las mejores «b» soluciones para construir el conjunto RefSet.
-//  El conjunto RefSet es un conjunto de «b» soluciones que se usarán para
-//  generar nuevas soluciones al combinarlas por algún método.
+// RefSet build process
 void refset_build()
 {
     //cout << "refset_build()" << endl;
     int i;
     vector<solution> tmp;
-    // Ordenar soluciones de la poblacion por el fitness
+    // Order solutions by the fitness
     for (i = 0; i < popsize; i++) {
         tmp.push_back(sols[i]);
     }
     sort_solutions(tmp);
-    // Seleccionar los «b» mejores y hacer push en RefSet.
+    // Select the «b» best solutions and adding to RefSet
     for (i = 0; i < b; i++) {
         refset.push_back(tmp[i]);
     }
 }
 
-// Inicializar:
-//  Identificar la mejor solución en RefSet como la mejor actual.
+// Initialization:
+//    Save the best solution.
 void save_best_solution(vector<solution> tmp)
 {
     //cout << "save_best_solution()" << endl;
@@ -434,9 +425,9 @@ void save_best_solution(vector<solution> tmp)
 
 
 
-// Combinar Soluciones:
-//  Generar intentos de soluciones usando todos los pares de soluciones de RefSet,
-//  tal que al menos una solucion de cada una sea nueva.
+// Solution combination
+//    Generate solutions proposals using all the solutions in the RefSet
+//    considering at least one generated solution is new.
 void solutions_combination()
 {
     //cout << "solutions_combination()" << endl;
@@ -515,7 +506,7 @@ void solutions_combination()
                 }
             }
 
-            // Verificar si las nuevas soluciones estan presentes en refset.
+            // Check if the new solutions are in the RefSet.
             if(!is_in(p1,refset) || !is_in(p2,refset)){
                 new_sol = true;
             }
@@ -529,9 +520,9 @@ void solutions_combination()
 
 }
 
-// Modificar el conjunto de referencia (refset)
-//  Elegir las mejores «b» soluciones de la unión entre RefSet con el conjunto
-//  «b(b-1)/2» de soluciones generadas en el paso anterior.
+// RefSet modification
+//   Choose the best «b» solutions of the union between RefSet
+//   and the «b(b-1)/2» solution set generated in the previous step.
 void refset_modification(vector<solution> tmp_sols)
 {
     //cout << "refset_modification()" << endl;
@@ -572,7 +563,7 @@ solution shift_left(solution tmp)
     return tmp;
 }
 
-
+// Improvement using shift-left
 vector<solution> solutions_improvement2(vector<solution> tmp)
 {
     //cout << "solutions_improvement2()" << endl;
@@ -601,27 +592,21 @@ vector<solution> solutions_improvement2(vector<solution> tmp)
     return final;
 }
 
-// Reconstruir RefSet:
-//  Eliminar las «b/2» soluciones en RefSet.
-//  Generar «popsize» soluciones mejoradas aplicando "solutions_generation" y
-//  "solutions_improvement".
-//  Elegir «b/2» soluciones "diversas" y agregarlas a RefSet.
+// Rebuild RefSet:
 void refset_rebuild()
 {
     //cout << "refset_rebuild()" << endl;
-    // eliminamos las b/2 peores.
+    // Removing the worst b/2 solutions
     sort_solutions(refset);
     refset.erase(refset.end()-(b/2), refset.end());
 
-    // generamos popsize mejores random + busqueda local
+    // Generating «popsize» best random + local search
     vector<solution> new_sols;
     solutions_generation(new_sols);
     fitness_calculation(new_sols);
-    //print_solutions(new_sols);
-    //getchar();
     new_sols = solutions_improvement2(new_sols);
 
-    // elegimos las b/2 soluciones mas "malas".
+    // Choosing the b/2 worst solutions
     sort_solutions(new_sols);
     refset.erase(refset.begin(),refset.end()-(b/2));
 
