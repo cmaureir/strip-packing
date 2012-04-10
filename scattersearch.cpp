@@ -105,6 +105,61 @@ void print_one_solution(solution tmp){
     cout << " | " << tmp.fitness << " | " << tmp.p << "%" << endl;
 }
 
+void print_tikz(solution sol){
+
+ const string colors[] ={
+        "blue",
+        "brown",
+        "cyan",
+        "gray",
+        "green",
+        "magenta",
+        "orange",
+        "purple",
+        "red",
+        "violet",
+        "yellow"};
+
+    time_t ltime;
+    struct tm *Tm;
+    ltime = time(NULL);
+    Tm = localtime(&ltime);
+
+    stringstream ss;
+    ss << "diagrams/";
+    ss << Tm->tm_mday << "-";
+    ss << Tm->tm_mon + 1  << "-";
+    ss << Tm->tm_year + 1900 << "_";
+    ss << Tm->tm_hour << ":";
+    ss << Tm->tm_min << ":";
+    ss << Tm->tm_sec << ".tex";
+
+    string path = ss.str();
+    ofstream file(path.c_str());
+    file << "\\documentclass[dvipsnames]{article}\n";
+    file << "\\usepackage[pdftex,active,tightpage]{preview}\n";
+    file << "\\usepackage[utf8]{inputenc}\n";
+    file << "\\usepackage{tikz}\n";
+    file << "\\PreviewEnvironment{tikzpicture}\n";
+    file << "\n";
+    file << "\\begin{document}\n";
+    file << "  \\begin{tikzpicture}[scale=0.75]\n";
+    file << "    \\begin{scope}\n";
+
+    file << "       \\draw (0 ," << sol.fitness << ") -- (0,0) -- (" << strip_width << ",0) -- (" << strip_width << "," << sol.fitness << ");\n";
+    for (int i = 0; i < (int)sol.items.size(); i++) {
+        file << "           \\filldraw["<<colors[i%11]<<",draw=black] (" << sol.a[i] << "," << sol.b[i] << ") rectangle (" << sol.a[i] + bs[sol.items[i]-1].width << "," << sol.b[i] + bs[sol.items[i]-1].height << ");\n";
+        file << "           \\draw (" << sol.a[i] +  bs[sol.items[i]-1].width/2.0 << "," << sol.b[i] + bs[sol.items[i]-1].height/2.0 << ") node {" << sol.items[i] << "};\n";
+        file << "\n";
+    }
+
+    file << "     \\end{scope}\n";
+    file << "  \\end{tikzpicture}\n";
+    file << "\\end{document}\n";
+
+    file.close();
+}
+
 void print_strip(solution sol){
 
     const string colors[] = {
@@ -290,14 +345,16 @@ void fitness_calculation_one(solution &tmp){
         item_h = bs.at(item-1).height;
         if(search_fit(item,item_w,item_h, a, b, tmp.height, tmp.strip)){
             place_item(item,item_w,item_h, a, b, tmp.strip);
+            tmp.a[j] = a;
+            tmp.b[j] = b;
         }
         tmp.p += item_w * item_h;
     }
     tmp.p = (tmp.p*100)/(float)(strip_width * tmp.height);
     tmp.fitness = tmp.height;
-    print_one_solution(tmp);
-    print_strip(tmp);
-    getchar();
+    //print_one_solution(tmp);
+    //print_strip(tmp);
+    //getchar();
 }
 
 // Fitness calculation
@@ -350,6 +407,8 @@ void solutions_generation(vector<solution> &soluciones)
         // Adding shuffled rectangles on the solutions structure
         for (j = 0; j < (int)bs.size(); j++) {
             tmp_sol.items.push_back(ids[j]);
+            tmp_sol.a.push_back(0);
+            tmp_sol.b.push_back(0);
         }
 
         // tmp solution fitness
@@ -421,6 +480,7 @@ void save_best_solution(vector<solution> tmp)
     //cout << "save_best_solution()" << endl;
     sort_solutions(tmp);
     best = tmp[0];
+    fitness_calculation_one(best);
 }
 
 

@@ -49,9 +49,11 @@ int main(int argc, char *argv[]) {
         iteration++;
         //print_one_solution(best);
         //print_strip(best);
+        //getchar();
     } while (iteration < max_iter);
-    print_one_solution(best);
-    print_strip(best);
+    //print_one_solution(best);
+    //print_strip(best);
+    print_tikz(best);
 
     return 0;
 }
