@@ -2,7 +2,8 @@ TEXFILES = $(wildcard *.tex)
 PDFFILES = $(TEXFILES:.tex=.pdf)
 PNGFILES = $(PDFFILES:.pdf=.png)
 
-all: png
+#all: png
+all: pdf
 
 png: $(PNGFILES)
 pdf: $(PDFFILES)
