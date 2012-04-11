@@ -231,7 +231,14 @@ bool search_fit(int item, int item_w, int item_h, int &a, int &b, int &h, int **
             }
             else
             {
-                x = x + bs[strip[x][y]-1].width - 1;
+                if (item_w + x >= strip_width)
+                {
+                    x = strip_width;
+                }
+                else
+                {
+                    x = x + bs[strip[x][y]-1].width - 1;
+                }
             }
             fit = true;
         }
@@ -295,9 +302,9 @@ void fitness_calculation_one(solution &tmp){
     }
     tmp.p = (tmp.p*100)/(float)(strip_width * tmp.height);
     tmp.fitness = tmp.height;
-    print_one_solution(tmp);
-    print_strip(tmp);
-    getchar();
+//    print_one_solution(tmp);
+//    print_strip(tmp);
+//    getchar();
 }
 
 // Fitness calculation
