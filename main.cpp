@@ -47,9 +47,9 @@ int main(int argc, char *argv[]) {
 
         refset_rebuild();
         iteration++;
-        //print_one_solution(best);
+        print_one_solution(best);
         //print_strip(best);
-        //getchar();
+        //print_tikz(best);
     } while (iteration < max_iter);
     //print_one_solution(best);
     //print_strip(best);

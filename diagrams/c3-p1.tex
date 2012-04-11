@@ -1,0 +1,97 @@
+\documentclass[dvipsnames]{article}
+\usepackage[pdftex,active,tightpage]{preview}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}
+  \begin{tikzpicture}[scale=0.75]
+    \begin{scope}
+       \draw (0 ,32) -- (0,0) -- (60,0) -- (60,32);
+           \filldraw[blue,draw=black] (0,0) rectangle (5,3);
+           \draw (2.5,1.5) node {20};
+
+           \filldraw[brown,draw=black] (5,0) rectangle (22,3);
+           \draw (13.5,1.5) node {27};
+
+           \filldraw[cyan,draw=black] (22,0) rectangle (28,7);
+           \draw (25,3.5) node {16};
+
+           \filldraw[gray,draw=black] (28,0) rectangle (46,5);
+           \draw (37,2.5) node {25};
+
+           \filldraw[green,draw=black] (0,3) rectangle (18,8);
+           \draw (9,5.5) node {17};
+
+           \filldraw[magenta,draw=black] (46,0) rectangle (50,3);
+           \draw (48,1.5) node {28};
+
+           \filldraw[orange,draw=black] (50,0) rectangle (54,8);
+           \draw (52,4) node {4};
+
+           \filldraw[purple,draw=black] (28,5) rectangle (49,8);
+           \draw (38.5,6.5) node {11};
+
+           \filldraw[red,draw=black] (18,7) rectangle (25,10);
+           \draw (21.5,8.5) node {19};
+
+           \filldraw[violet,draw=black] (0,8) rectangle (14,13);
+           \draw (7,10.5) node {8};
+
+           \filldraw[yellow,draw=black] (25,8) rectangle (39,16);
+           \draw (32,12) node {3};
+
+           \filldraw[blue,draw=black] (39,8) rectangle (53,19);
+           \draw (46,13.5) node {7};
+
+           \filldraw[brown,draw=black] (53,8) rectangle (60,19);
+           \draw (56.5,13.5) node {6};
+
+           \filldraw[cyan,draw=black] (0,13) rectangle (18,17);
+           \draw (9,15) node {21};
+
+           \filldraw[gray,draw=black] (54,0) rectangle (60,2);
+           \draw (57,1) node {24};
+
+           \filldraw[green,draw=black] (18,16) rectangle (35,27);
+           \draw (26.5,21.5) node {12};
+
+           \filldraw[magenta,draw=black] (18,10) rectangle (25,15);
+           \draw (21.5,12.5) node {1};
+
+           \filldraw[orange,draw=black] (54,2) rectangle (57,7);
+           \draw (55.5,4.5) node {18};
+
+           \filldraw[purple,draw=black] (0,17) rectangle (12,19);
+           \draw (6,18) node {23};
+
+           \filldraw[red,draw=black] (57,2) rectangle (60,6);
+           \draw (58.5,4) node {22};
+
+           \filldraw[violet,draw=black] (35,19) rectangle (56,32);
+           \draw (45.5,25.5) node {5};
+
+           \filldraw[yellow,draw=black] (0,19) rectangle (7,23);
+           \draw (3.5,21) node {14};
+
+           \filldraw[blue,draw=black] (14,8) rectangle (18,13);
+           \draw (16,10.5) node {9};
+
+           \filldraw[brown,draw=black] (0,23) rectangle (18,26);
+           \draw (9,24.5) node {10};
+
+           \filldraw[cyan,draw=black] (56,19) rectangle (60,30);
+           \draw (58,24.5) node {13};
+
+           \filldraw[gray,draw=black] (0,26) rectangle (14,31);
+           \draw (7,28.5) node {2};
+
+           \filldraw[green,draw=black] (12,17) rectangle (17,21);
+           \draw (14.5,19) node {15};
+
+           \filldraw[magenta,draw=black] (14,27) rectangle (35,32);
+           \draw (24.5,29.5) node {26};
+
+     \end{scope}
+  \end{tikzpicture}
+\end{document}

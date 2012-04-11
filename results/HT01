@@ -1,0 +1,28 @@
+Using input file: inputs/HT01.csv
+Using input file: inputs/HT01.csv
+Using input file: inputs/HT01.csv
+1
+2
+3
+4
+5
+la
+7 1 14 13 10 16 5 11 8 2 6 12 4 3 15 9  | 22 | 90.9091%
+1
+1
+1
+10 3 8 4 14 2 6 12 13 7 15 9 1 16 11 5  | 21 | 95.2381%
+2
+2
+2
+7 12 10 13 3 2 9 8 16 4 6 5 1 14 15 11  | 20 | 100%
+7 12 10 13 3 2 9 8 16 4 6 5 1 14 15 11  | 20 | 100%
+
+real	0m0.109s
+user	0m0.103s
+sys	0m0.003s
+Using input file: inputs/HT01.csv
+
+real	0m0.114s
+user	0m0.113s
+sys	0m0.000s

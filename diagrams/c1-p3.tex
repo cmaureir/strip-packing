@@ -1,0 +1,61 @@
+\documentclass[dvipsnames]{article}
+\usepackage[pdftex,active,tightpage]{preview}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}
+  \begin{tikzpicture}[scale=0.75]
+    \begin{scope}
+       \draw (0 ,20) -- (0,0) -- (20,0) -- (20,20);
+           \filldraw[blue,draw=black] (0,0) rectangle (4,6);
+           \draw (2,3) node {12};
+
+           \filldraw[brown,draw=black] (4,0) rectangle (14,3);
+           \draw (9,1.5) node {14};
+
+           \filldraw[cyan,draw=black] (14,0) rectangle (20,3);
+           \draw (17,1.5) node {15};
+
+           \filldraw[gray,draw=black] (4,3) rectangle (13,10);
+           \draw (8.5,6.5) node {4};
+
+           \filldraw[green,draw=black] (13,3) rectangle (18,5);
+           \draw (15.5,4) node {2};
+
+           \filldraw[magenta,draw=black] (13,5) rectangle (20,12);
+           \draw (16.5,8.5) node {7};
+
+           \filldraw[orange,draw=black] (0,6) rectangle (4,20);
+           \draw (2,13) node {1};
+
+           \filldraw[purple,draw=black] (4,10) rectangle (10,15);
+           \draw (7,12.5) node {9};
+
+           \filldraw[red,draw=black] (10,10) rectangle (13,12);
+           \draw (11.5,11) node {10};
+
+           \filldraw[violet,draw=black] (18,3) rectangle (20,5);
+           \draw (19,4) node {3};
+
+           \filldraw[yellow,draw=black] (10,12) rectangle (15,17);
+           \draw (12.5,14.5) node {5};
+
+           \filldraw[blue,draw=black] (15,12) rectangle (17,17);
+           \draw (16,14.5) node {6};
+
+           \filldraw[brown,draw=black] (4,17) rectangle (14,20);
+           \draw (9,18.5) node {16};
+
+           \filldraw[cyan,draw=black] (14,17) rectangle (20,20);
+           \draw (17,18.5) node {13};
+
+           \filldraw[gray,draw=black] (17,12) rectangle (20,17);
+           \draw (18.5,14.5) node {8};
+
+           \filldraw[green,draw=black] (4,15) rectangle (10,17);
+           \draw (7,16) node {11};
+
+     \end{scope}
+  \end{tikzpicture}
+\end{document}

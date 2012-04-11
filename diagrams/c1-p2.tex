@@ -1,0 +1,64 @@
+\documentclass[dvipsnames]{article}
+\usepackage[pdftex,active,tightpage]{preview}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\PreviewEnvironment{tikzpicture}
+
+\begin{document}
+  \begin{tikzpicture}[scale=0.75]
+    \begin{scope}
+       \draw (0 ,21) -- (0,0) -- (20,0) -- (20,21);
+           \filldraw[blue,draw=black] (0,0) rectangle (9,4);
+           \draw (4.5,2) node {3};
+
+           \filldraw[brown,draw=black] (9,0) rectangle (14,4);
+           \draw (11.5,2) node {15};
+
+           \filldraw[cyan,draw=black] (0,4) rectangle (15,8);
+           \draw (7.5,6) node {14};
+
+           \filldraw[gray,draw=black] (14,0) rectangle (15,4);
+           \draw (14.5,2) node {6};
+
+           \filldraw[green,draw=black] (0,8) rectangle (9,11);
+           \draw (4.5,9.5) node {11};
+
+           \filldraw[magenta,draw=black] (15,0) rectangle (20,3);
+           \draw (17.5,1.5) node {7};
+
+           \filldraw[orange,draw=black] (15,3) rectangle (17,11);
+           \draw (16,7) node {13};
+
+           \filldraw[purple,draw=black] (9,8) rectangle (13,9);
+           \draw (11,8.5) node {8};
+
+           \filldraw[red,draw=black] (9,9) rectangle (13,10);
+           \draw (11,9.5) node {1};
+
+           \filldraw[violet,draw=black] (9,10) rectangle (14,15);
+           \draw (11.5,12.5) node {9};
+
+           \filldraw[yellow,draw=black] (0,11) rectangle (7,13);
+           \draw (3.5,12) node {10};
+
+           \filldraw[blue,draw=black] (17,3) rectangle (20,16);
+           \draw (18.5,9.5) node {12};
+
+           \filldraw[brown,draw=black] (0,15) rectangle (10,21);
+           \draw (5,18) node {16};
+
+           \filldraw[cyan,draw=black] (14,11) rectangle (17,20);
+           \draw (15.5,15.5) node {5};
+
+           \filldraw[gray,draw=black] (10,15) rectangle (14,20);
+           \draw (12,17.5) node {2};
+
+           \filldraw[green,draw=black] (17,16) rectangle (20,21);
+           \draw (18.5,18.5) node {4};
+
+           \filldraw[magenta,draw=black] (0,13) rectangle (7,15);
+           \draw (3.5,14) node {17};
+
+     \end{scope}
+  \end{tikzpicture}
+\end{document}

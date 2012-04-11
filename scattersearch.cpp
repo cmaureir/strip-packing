@@ -130,8 +130,8 @@ void print_tikz(solution sol){
     ss << Tm->tm_mday << "-";
     ss << Tm->tm_mon + 1  << "-";
     ss << Tm->tm_year + 1900 << "_";
-    ss << Tm->tm_hour << ":";
-    ss << Tm->tm_min << ":";
+    ss << Tm->tm_hour << "-";
+    ss << Tm->tm_min << "-";
     ss << Tm->tm_sec << ".tex";
 
     string path = ss.str();
